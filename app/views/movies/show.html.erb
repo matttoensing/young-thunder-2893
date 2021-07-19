@@ -11,17 +11,10 @@
 
 <h3>Add Actor to Movie</h3>
 
-<%= form_with url: "/movies/#{@movie.id}/actors/new", method: :post, local: true do |f| %>
-<p>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</p>
-
-<p>
-  <%= f.label :age %>
-  <%= f.text_field :age %>
-</p>
-<p>
-    <%= f.submit "Submit" %>
-  </p>
-<% end %>
+<%= form_tag("/movies/#{@movie.id}", method: 'post') do %>
+  <%= label_tag "name", "Name" %>
+  <%= text_field_tag(:name) %> <br><br>
+  <%= label_tag "age", "Age" %>
+  <%= text_field_tag(:age) %>
+  <%= submit_tag("Submit")%>
+<% end  %>
