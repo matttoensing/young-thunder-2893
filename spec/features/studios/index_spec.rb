@@ -26,13 +26,6 @@ RSpec.describe 'studio index page' do
       expect(page).to have_content("Popular Studio Films: #{movie1.title}")
       expect(page).to have_content("Popular Studio Films: #{movie2.title}")
       expect(page).to have_content("Popular Studio Films: #{movie3.title}")
-      #       Story 1
-      # Studio Index
-      #
-      # As a user,
-      # When I visit the studio index page
-      # I see a each studio's name and location
-      # And underneath each studio, I see the titles of all of its movies.
     end
   end
 end
