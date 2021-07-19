@@ -25,6 +25,8 @@ RSpec.describe 'movie show page' do
       movie.movie_actors.create!(actor: actor2)
       movie.movie_actors.create!(actor: actor3)
 
+      visit "/movies/#{movie.id}"
+      
       expect(actor2.name).to appear_before(actor1.name)
       expect(actor1.name).to appear_before(actor3.name)
       expect(page).to_not have_content("Scarlett Johansson")
@@ -38,7 +40,7 @@ RSpec.describe 'movie show page' do
       # And I see the average age of all of the movie's actors
     end
 
-    xit "displays the movie's actors average age" do
+    it "displays the movie's actors average age" do
       studio = Studio.create!(name: "Marvel Studios", location: "Hollywood, CA")
       movie = studio.movies.create!(title: "Avengers", creation_year: 2011, genre: "SuperHero")
       actor1 = Actor.create!(name: "Robert Downy, JR", age: 42)
@@ -49,7 +51,9 @@ RSpec.describe 'movie show page' do
       movie.movie_actors.create!(actor: actor2)
       movie.movie_actors.create!(actor: actor3)
 
-      expect(page).to have_content("Average Age of Actors: #{movie.something}")
+      visit "/movies/#{movie.id}"
+
+      expect(page).to have_content("Average Age of Actors: #{movie.average_age_of_actors}")
     end
   end
 end
