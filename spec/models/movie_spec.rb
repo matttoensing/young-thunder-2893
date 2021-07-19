@@ -22,7 +22,22 @@ RSpec.describe Movie, type: :model do
 
         expected = [actor2, actor1, actor3]
 
-        expect(studio.order_actors_by_age).to eq(expected)
+        expect(movie.order_actors_by_age).to eq(expected)
+      end
+    end
+
+    describe '#average_age_of_actors' do
+      it 'can order movie actors by age in ascension' do
+        studio = Studio.create!(name: "Marvel Studios", location: "Hollywood, CA")
+        movie = studio.movies.create!(title: "Avengers", creation_year: 2011, genre: "SuperHero")
+        actor1 = Actor.create!(name: "Robert Downy, JR", age: 43)
+        actor2 = Actor.create!(name: "Chris Evans", age: 32)
+        actor3 = Actor.create!(name: "Samuel L Jackson", age: 66)
+        movie.movie_actors.create!(actor: actor1)
+        movie.movie_actors.create!(actor: actor2)
+        movie.movie_actors.create!(actor: actor3)
+
+        expect(movie.average_age_of_actors).to eq(47)
       end
     end
   end
