@@ -26,18 +26,10 @@ RSpec.describe 'movie show page' do
       movie.movie_actors.create!(actor: actor3)
 
       visit "/movies/#{movie.id}"
-      
+
       expect(actor2.name).to appear_before(actor1.name)
       expect(actor1.name).to appear_before(actor3.name)
       expect(page).to_not have_content("Scarlett Johansson")
-      #       Story 2
-      # Movie Show
-      #
-      # As a user,
-      # When I visit a movie's show page.
-      # I see the movie's title, creation year, and genre,
-      # and a list of all its actors from youngest to oldest.
-      # And I see the average age of all of the movie's actors
     end
 
     it "displays the movie's actors average age" do
